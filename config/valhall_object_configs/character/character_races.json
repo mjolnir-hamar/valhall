@@ -1,0 +1,35 @@
+{
+  "HUMAN": {
+    "STAT": {
+      "HP": 5,
+      "ATTACK": 6,
+      "MAGIC_ATTACK": 5,
+      "DEFENSE": 5,
+      "MAGIC_DEFENSE": 5,
+      "SPEED": 4,
+      "EVASION": 4
+    }
+  },
+  "ELF": {
+    "STAT": {
+      "HP": 4,
+      "ATTACK": 3,
+      "MAGIC_ATTACK": 7,
+      "DEFENSE": 4,
+      "MAGIC_DEFENSE": 8,
+      "SPEED": 5,
+      "EVASION": 5
+    }
+  },
+  "JOTUN": {
+    "STAT": {
+      "HP": 6,
+      "ATTACK": 8,
+      "MAGIC_ATTACK": 2,
+      "DEFENSE": 7,
+      "MAGIC_DEFENSE": 3,
+      "SPEED": 2,
+      "EVASION": 2
+    }
+  }
+}

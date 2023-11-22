@@ -1,0 +1,112 @@
+{
+  "MAGE": {
+    "ATTACK": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 2
+    },
+    "DEFENSE": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 3
+    },
+    "EVASION": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 7
+    },
+    "HP": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 4
+    },
+    "MAGIC_ATTACK": {
+      "FUNC": {
+        "NAME": "LINEAR",
+        "PARAMS": {
+          "b": 0,
+          "m": 1.25
+        }
+      },
+      "VAL": 8
+    },
+    "MAGIC_DEFENSE": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 7
+    },
+    "SPEED": {
+      "FUNC": {
+        "NAME": "IDENTITY",
+        "PARAMS": {}
+      },
+      "VAL": 6
+    }
+  },
+  "WARRIOR": {
+    "STAT": {
+      "ATTACK": {
+        "FUNC": {
+          "NAME": "LINEAR",
+          "PARAMS": {
+            "b": 0,
+            "m": 1.25
+          }
+        },
+        "VAL": 3
+      },
+      "DEFENSE": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 2
+      },
+      "EVASION": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 2
+      },
+      "HP": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 2
+      },
+      "MAGIC_ATTACK": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 0
+      },
+      "MAGIC_DEFENSE": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 0
+      },
+      "SPEED": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 1
+      }
+    }
+  }
+}

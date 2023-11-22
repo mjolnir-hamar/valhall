@@ -1,0 +1,45 @@
+{
+  "BLANK_HEAD": {
+    "SLOT": "HEAD",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "BLANK_BODY" : {
+    "SLOT": "BODY",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "BLANK_ARMS" : {
+    "SLOT": "ARMS",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "BLANK_HANDS" : {
+    "SLOT": "HANDS",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "BLANK_LEGS" : {
+    "SLOT": "LEGS",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "BLANK_FEET" : {
+    "SLOT": "FEET",
+    "STAT": {
+      "LEVEL": 1
+    }
+  },
+  "HELMET": {
+    "SLOT": "HEAD",
+    "STAT": {
+      "LEVEL": 1,
+      "DEFENSE": 1
+    }
+  }
+}
