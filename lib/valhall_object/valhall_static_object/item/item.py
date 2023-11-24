@@ -15,9 +15,9 @@ from lib.consts.paths import (
 
 
 with open(CONSUMABLE_CONFIG_FILE, "r") as _j:
-    CONSUMABLE_CONFIG = json.load(_j)
+    CONSUMABLE_CONFIG: dict = json.load(_j)
 with open(EQUIPMENT_CONFIG_FILE, "r") as _j:
-    EQUIPMENT_CONFIG = json.load(_j)
+    EQUIPMENT_CONFIG: dict = json.load(_j)
 
 
 class Item(ValhallStaticObject):

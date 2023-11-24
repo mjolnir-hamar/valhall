@@ -15,9 +15,9 @@ from lib.valhall_object.valhall_static_object.item.item_set import (
 )
 
 with open(CHAR_JOB_CONFIG_FILE, "r") as _j:
-    CHAR_JOB_CONFIG = json.load(_j)
+    CHAR_JOB_CONFIG: dict = json.load(_j)
 with open(CHAR_RACE_CONFIG_FILE, "r") as _j:
-    CHAR_RACE_CONFIG = json.load(_j)
+    CHAR_RACE_CONFIG: dict = json.load(_j)
 
 
 class Character(ValhallMobileObject):

@@ -99,7 +99,9 @@ def add_new_job():
         new_job_stat[stat_names.FUNC][stat_names.NAME] = new_job_scaling_func
         new_job_stat[stat_names.FUNC][stat_names.PARAMS] = new_scaling_func_params
 
-    char_job_config[new_job_name] = new_job_stats
+    char_job_config[new_job_name] = {
+        stat_names.STAT: new_job_stats
+    }
     print()
     print(f"Completed new job config for \"{new_job_name}")
     pprint.pprint(char_job_config[new_job_name])
