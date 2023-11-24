@@ -1,13 +1,12 @@
-import json
 import pprint
 import argparse
 from copy import deepcopy
 
-from tools.cli import (
-    CLI
+from tools import (
+    CLI,
+    JsonManager
 )
 import tools.consts.cli.names as names
-import lib.consts.names as generic_names
 import lib.consts.stat_consts.names as stat_names
 import lib.consts.stat_consts.scaling_function_consts.names as scaling_func_names
 from lib.consts.paths import (
@@ -15,62 +14,35 @@ from lib.consts.paths import (
 )
 
 SCALING_FUNC_CHOICES: dict = {
-    i + 1: scaling_func_name
+    i+1: scaling_func_name
     for i, scaling_func_name in enumerate(sorted(scaling_func_names.ALL_SCALING_FUNCTIONS.keys()))
 }
 
 
-def load_job_config() -> dict:
-    with open(CHAR_JOB_CONFIG_FILE, "r") as _j:
-        char_job_config: dict = json.load(_j)
-    return char_job_config
-
-
-def save_job_config(char_job_config: dict):
-    with open(CHAR_JOB_CONFIG_FILE, "w") as _j:
-        json.dump(char_job_config, _j, indent=2, sort_keys=True)
-
-
-def get_new_job_name() -> [str, bool]:
-    new_job_name: str = CLI.get_input("New character job name", {str})
-    is_confirmed: bool = CLI.is_confirmed(
-        CLI.get_input_from_choices(
-            f"New job name is \"{new_job_name}\"?",
-            CLI.generic_choices[names.YES_NO]
-        )
-    )
-    return new_job_name, is_confirmed
-
-
 def add_new_job():
-    char_job_config: dict = load_job_config()
+    char_job_config: dict = JsonManager.load_config(CHAR_JOB_CONFIG_FILE)
 
     print("Configured character jobs:")
-    for i, char_job_name in enumerate(sorted(char_job_config.keys())):
-        print(f"\t{i + 1}. {char_job_name}")
+    configured_char_jobs: dict[int, str] = JsonManager.get_enumerated_keys(char_job_config)
+    for i, char_job_name in sorted(configured_char_jobs.items()):
+        print(f"\t{i}. {char_job_name}")
 
-    is_confirmed: bool = False
-    new_job_name: str = generic_names.DEFAULT
-    while not is_confirmed:
-        new_job_name, is_confirmed = get_new_job_name()
-
+    new_job_name = CLI.get_new_name("character job")
     print()
 
     print(f"NEW JOB NAME: {new_job_name}")
     if CLI.is_confirmed(
-            CLI.get_input_from_choices(
-                "Copy template stats from preexisting job?",
-                CLI.generic_choices[names.YES_NO]
-            )
-    ):
-        template_job_options: dict[int, str] = {
-            i + 1: char_job_name for i, char_job_name in enumerate(sorted(char_job_config.keys()))
-        }
-        template_job_idx: int = CLI.get_input_from_choices_dict(
-            "Pick a template job",
-            template_job_options
+        CLI.get_input_from_choices(
+            "Copy template stats from preexisting job?",
+            CLI.generic_choices[names.YES_NO]
         )
-        template_job_name: str = template_job_options[template_job_idx]
+    ):
+        template_job_name: str = configured_char_jobs[
+            CLI.get_input_from_choices_dict(
+                "Pick a template job",
+                configured_char_jobs
+            )
+        ]
         new_job_stats: dict = deepcopy(char_job_config[template_job_name])[stat_names.STAT]
         print(f"Initializing new job stats from template job \"{template_job_name}\"")
     else:
@@ -107,24 +79,26 @@ def add_new_job():
     pprint.pprint(char_job_config[new_job_name])
 
     if CLI.is_confirmed(CLI.get_input_from_choices("Save?", CLI.generic_choices[names.YES_NO])):
-        save_job_config(char_job_config)
+        JsonManager.save_config(char_job_config, CHAR_JOB_CONFIG_FILE)
 
 
 def delete_job():
-    char_job_config: dict = load_job_config()
+    char_job_config: dict = JsonManager.load_config(CHAR_JOB_CONFIG_FILE)
 
-    configured_jobs: dict[int, str] = {
-        i + 1: char_job_name for i, char_job_name in enumerate(sorted(char_job_config.keys()))
-    }
-    job_to_delete: str = configured_jobs[CLI.get_input_from_choices_dict(
+    configured_char_jobs: dict[int, str] = JsonManager.get_enumerated_keys(char_job_config)
+    job_to_delete: str = configured_char_jobs[CLI.get_input_from_choices_dict(
         "Pick a job to delete",
-        configured_jobs
+        configured_char_jobs
     )]
     if CLI.is_confirmed(
-            CLI.get_input_from_choices(f"Confirm deletion of \"{job_to_delete}\"", CLI.generic_choices[names.YES_NO])):
+        CLI.get_input_from_choices(
+            f"Confirm deletion of \"{job_to_delete}\"",
+            CLI.generic_choices[names.YES_NO]
+        )
+    ):
         del char_job_config[job_to_delete]
 
-    save_job_config(char_job_config)
+    JsonManager.save_config(char_job_config, CHAR_JOB_CONFIG_FILE)
 
 
 def main():

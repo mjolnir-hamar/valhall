@@ -1,35 +1,46 @@
 {
-  "HUMAN": {
+  "DWARF": {
     "STAT": {
-      "HP": 5,
-      "ATTACK": 6,
-      "MAGIC_ATTACK": 5,
-      "DEFENSE": 5,
-      "MAGIC_DEFENSE": 5,
-      "SPEED": 4,
-      "EVASION": 4
+      "ATTACK": 8,
+      "DEFENSE": 9,
+      "EVASION": 4,
+      "HP": 9,
+      "MAGIC_ATTACK": 3,
+      "MAGIC_DEFENSE": 4,
+      "SPEED": 5
     }
   },
   "ELF": {
     "STAT": {
-      "HP": 4,
       "ATTACK": 3,
-      "MAGIC_ATTACK": 7,
       "DEFENSE": 4,
+      "EVASION": 5,
+      "HP": 4,
+      "MAGIC_ATTACK": 7,
       "MAGIC_DEFENSE": 8,
-      "SPEED": 5,
-      "EVASION": 5
+      "SPEED": 5
+    }
+  },
+  "HUMAN": {
+    "STAT": {
+      "ATTACK": 6,
+      "DEFENSE": 5,
+      "EVASION": 4,
+      "HP": 5,
+      "MAGIC_ATTACK": 5,
+      "MAGIC_DEFENSE": 5,
+      "SPEED": 4
     }
   },
   "JOTUN": {
     "STAT": {
-      "HP": 6,
       "ATTACK": 8,
-      "MAGIC_ATTACK": 2,
       "DEFENSE": 7,
+      "EVASION": 2,
+      "HP": 6,
+      "MAGIC_ATTACK": 2,
       "MAGIC_DEFENSE": 3,
-      "SPEED": 2,
-      "EVASION": 2
+      "SPEED": 2
     }
   }
 }

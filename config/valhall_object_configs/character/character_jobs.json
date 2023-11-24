@@ -55,6 +55,68 @@
       }
     }
   },
+  "THIEF": {
+    "STAT": {
+      "ATTACK": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 5
+      },
+      "DEFENSE": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 4
+      },
+      "EVASION": {
+        "FUNC": {
+          "NAME": "LINEAR",
+          "PARAMS": {
+            "b": 2,
+            "m": 3
+          }
+        },
+        "VAL": 8
+      },
+      "HP": {
+        "FUNC": {
+          "NAME": "LINEAR",
+          "PARAMS": {
+            "b": 1,
+            "m": 2
+          }
+        },
+        "VAL": 4
+      },
+      "MAGIC_ATTACK": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 2
+      },
+      "MAGIC_DEFENSE": {
+        "FUNC": {
+          "NAME": "IDENTITY",
+          "PARAMS": {}
+        },
+        "VAL": 2
+      },
+      "SPEED": {
+        "FUNC": {
+          "NAME": "LINEAR",
+          "PARAMS": {
+            "b": 3,
+            "m": 2
+          }
+        },
+        "VAL": 8
+      }
+    }
+  },
   "WARRIOR": {
     "STAT": {
       "ATTACK": {

@@ -1,5 +1,6 @@
 from typing import Union
 
+import lib.consts.names as generic_names
 import tools.consts.cli.names as names
 
 
@@ -58,3 +59,19 @@ class CLI:
             return True
         else:
             return False
+
+    @staticmethod
+    def get_new_name(name_type: str):
+        new_name: str = generic_names.DEFAULT
+        is_confirmed: bool = False
+
+        while not is_confirmed:
+            new_name: str = CLI.get_input(f"New {name_type} name", {str})
+            is_confirmed = CLI.is_confirmed(
+                CLI.get_input_from_choices(
+                    f"New {name_type} name is \"{new_name}\"?",
+                    CLI.generic_choices[names.YES_NO]
+                )
+            )
+
+        return new_name

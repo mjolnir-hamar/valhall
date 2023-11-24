@@ -17,3 +17,6 @@ UNINITIALIZED_STAT_CONFIG: dict = {
 UNINITIALIZED_JOB_CONFIG: dict = {
     base_stat: deepcopy(UNINITIALIZED_STAT_CONFIG) for base_stat in stat_names.ALL_BASE_STATS
 }
+UNINITIALIZED_RACE_CONFIG: dict = {
+    base_stat: -1 for base_stat in stat_names.ALL_BASE_STATS
+}

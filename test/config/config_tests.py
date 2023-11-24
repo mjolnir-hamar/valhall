@@ -18,10 +18,10 @@ class CharacterConfigTest(unittest.TestCase):
             self.assertEqual(set(char_job_entry[stat_names.STAT]), set(stat_names.ALL_BASE_STATS))
             for char_job_stat_details in char_job_entry[stat_names.STAT].values():
                 self.assertEqual(set(char_job_stat_details.keys()), {stat_names.FUNC, stat_names.VAL})
-                char_job_stat_func_spec = char_job_stat_details[stat_names.FUNC]
+                char_job_stat_func_spec: dict = char_job_stat_details[stat_names.FUNC]
                 self.assertEqual(set(char_job_stat_func_spec.keys()), {stat_names.NAME, stat_names.PARAMS})
-                self.assertEqual(type(char_job_stat_func_spec[stat_names.NAME]), str)
-                self.assertEqual(type(char_job_stat_func_spec[stat_names.PARAMS]), dict)
+                self.assertIsInstance(char_job_stat_func_spec[stat_names.NAME], str)
+                self.assertIsInstance(char_job_stat_func_spec[stat_names.PARAMS], dict)
                 self.assertIn(type(char_job_stat_details[stat_names.VAL]), {int, float})
 
     def test_character_race_config_file(self):
@@ -31,7 +31,7 @@ class CharacterConfigTest(unittest.TestCase):
         self.assertEqual(set(char_race_config.keys()), obj_names.ALL_RACES)
         for char_race_entry in char_race_config.values():
             self.assertEqual(set(char_race_entry.keys()), {stat_names.STAT})
-            char_race_stats = char_race_entry[stat_names.STAT]
+            char_race_stats: dict = char_race_entry[stat_names.STAT]
             self.assertEqual(set(char_race_stats.keys()), set(stat_names.ALL_BASE_STATS))
             for char_race_stat, char_race_stat_val in char_race_stats.items():
                 self.assertIn(type(char_race_stat_val), {int, float})
