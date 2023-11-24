@@ -1,6 +1,7 @@
 import lib.consts.valhall_object_consts.item_consts.names as names
 
 from lib.valhall_object.valhall_static_object.item import (
+    Item,
     Equipment
 )
 
@@ -11,10 +12,70 @@ class ItemSet:
         pass
 
 
-class Inventory(ItemSet):
+class InventorySlot:
 
     def __init__(self):
+        self.item_in_slot: "Item" = None
+        self.quantity: int = 0
+
+    def get_item_name(self) -> str:
+        return self.item_in_slot.name
+
+    def is_empty(self) -> bool:
+        if not self.item_in_slot:
+            return True
+        else:
+            return False
+
+    def add_item(self, item_to_add: "Item"):
+        if not self.item_in_slot:
+            self.item_in_slot = item_to_add
+        self.quantity += 1
+
+    def remove_item(self):
+        self.quantity -= 1
+        if self.quantity == 0:
+            self.item_in_slot = None
+
+
+class Inventory(ItemSet):
+
+    def __init__(self, size: int = 10):
         super().__init__()
+        self.size = size
+        self.items: tuple["InventorySlot"] = tuple(InventorySlot() for i in range(self.size))
+
+    def __str__(self) -> str:
+        inventory_str = ""
+        for i, inventory_slot in enumerate(self.items):
+            if inventory_slot.is_empty():
+                inventory_str += f"{i+1}. EMPTY\n"
+            else:
+                inventory_str += f"{i+1}. {inventory_slot.get_item_name()} ({inventory_slot.quantity})\n"
+        return inventory_str.strip()
+
+    def add_item(self, item_to_add: "Item"):
+        item_to_add_name = item_to_add.name
+        first_empty_slot_idx = -1
+        is_item_added = False
+        for i, inventory_slot in enumerate(self.items):
+            if inventory_slot.is_empty():
+                if first_empty_slot_idx == -1:
+                    first_empty_slot_idx = i
+            else:
+                if inventory_slot.get_item_name() == item_to_add_name:
+                    inventory_slot.add_item(item_to_add)
+                    is_item_added = True
+                    break
+        if first_empty_slot_idx != -1 and not is_item_added:
+            self.items[first_empty_slot_idx].add_item(item_to_add)
+
+    def remove_item(self, item_name_to_remove: str):
+        for inventory_slot in self.items:
+            if not inventory_slot.is_empty():
+                if inventory_slot.get_item_name() == item_name_to_remove:
+                    inventory_slot.remove_item()
+                    break
 
 
 class EquipmentSlot:
