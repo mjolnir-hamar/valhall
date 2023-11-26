@@ -11,6 +11,9 @@ from .stat import (
     Speed,
     Evasion
 )
+from lib.stat.scaling_function import (
+    ScalingFunction
+)
 
 
 class StatSheet:
@@ -66,7 +69,7 @@ class StatSheet:
         else:
             raise ValueError(f"Unknown stat name: {stat_name}")
 
-    def get_stat(self, stat_name: str) -> float:
+    def get_stat_val(self, stat_name: str) -> float:
         if stat_name == names.LEVEL:
             return self.level.val
         elif stat_name == names.HP:
@@ -83,6 +86,26 @@ class StatSheet:
             return self.speed.val
         elif stat_name == names.EVASION:
             return self.evasion.val
+        else:
+            raise ValueError(f"Unknown stat name: {stat_name}")
+
+    def get_stat_scaling_func(self, stat_name: str) -> "ScalingFunction":
+        if stat_name == names.LEVEL:
+            return self.level.scaling_func
+        elif stat_name == names.HP:
+            return self.hp.scaling_func
+        elif stat_name == names.ATTACK:
+            return self.attack.scaling_func
+        elif stat_name == names.MAGIC_ATTACK:
+            return self.magic_attack.scaling_func
+        elif stat_name == names.DEFENSE:
+            return self.defense.scaling_func
+        elif stat_name == names.MAGIC_DEFENSE:
+            return self.magic_defense.scaling_func
+        elif stat_name == names.SPEED:
+            return self.speed.scaling_func
+        elif stat_name == names.EVASION:
+            return self.evasion.scaling_func
         else:
             raise ValueError(f"Unknown stat name: {stat_name}")
 

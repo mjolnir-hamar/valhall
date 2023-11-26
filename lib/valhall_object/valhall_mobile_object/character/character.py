@@ -43,4 +43,4 @@ class Character(ValhallMobileObject):
             )
 
     def _compute_stat(self, stat_name: str) -> float:
-        return self.stats.get_stat(stat_name) + self.equipment.get_equipment_stat_modifier(stat_name)
+        return self.stats.get_stat_val(stat_name) + self.equipment.get_equipment_stat_modifier(stat_name)

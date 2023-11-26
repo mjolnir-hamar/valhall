@@ -138,7 +138,7 @@ class EquipmentSet(ItemSet):
         total_modifier = 0.
         for line in self.all_slots:
             for equipment in line:
-                total_modifier += equipment.equipment.stats.get_stat(stat_name)
+                total_modifier += equipment.equipment.stats.get_stat_val(stat_name)
         return total_modifier
 
     def add_equipment(self, new_equipment: "Equipment"):

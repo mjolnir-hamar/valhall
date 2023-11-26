@@ -14,7 +14,7 @@ class ValhallObject:
         self.stats: "StatSheet" = StatSheet()
 
     def _compute_stat(self, stat_name: str) -> float:
-        return self.stats.get_stat(stat_name)
+        return self.stats.get_stat_val(stat_name)
 
     def _get_stat_str(self) -> str:
         stat_str: str = ""
